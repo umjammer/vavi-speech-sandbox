@@ -16,6 +16,20 @@
  * [yakuwarigo modifier](https://github.com/umjammer/vavi-speech/tree/master/src/main/java/vavi/speech/modifier/ojosama)
  * [voicevox](https://voicevox.hiroshiba.jp/)
 
+## Install
+
+ * [maven]((https://jitpack.io/#umjammer/vavi-speech-sandbox))
+
+## Usage
+
+ * run java w/ jvmargs below
+```
+--add-opens java.base/java.lang=ALL-UNNAMED
+-Dsen.home=/Users/nsano/src/java/sen/src/main/home
+-Djna.library.path=target/test-classes
+-Djava.util.logging.config.file=src/test/resources/logging.properties
+```
+
 ## References
 
  * https://github.com/Barqawiz/IntelliJava ... by web api
