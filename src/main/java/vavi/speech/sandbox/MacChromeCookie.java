@@ -109,7 +109,8 @@ public class MacChromeCookie {
 
         var cookie = new StringBuilder();
 
-        Path tmp = Paths.get("tmp", "chrome.db");
+        Path tmp = Files.createTempFile("chrome_cookie", ".db");
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> tmp.toFile().delete()));
         Files.copy(Paths.get(dbPath), tmp, StandardCopyOption.REPLACE_EXISTING);
         try (var conn = DriverManager.getConnection(url + tmp, username, password);
              var statement = conn.prepareStatement(sql)) {
