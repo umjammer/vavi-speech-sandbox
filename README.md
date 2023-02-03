@@ -9,7 +9,7 @@
 <img src="https://user-images.githubusercontent.com/493908/216398725-5ded666c-567d-40a4-a8f1-83acfc8d60b8.png" width="150" />
 <span style="font-size:90pt">+</span>
 <img src="https://user-images.githubusercontent.com/493908/216399074-bbdd72f8-333b-4125-9e4d-7e44aeeb248e.png" width="150" />
-<span style="text-align:bottom;font-size:xx-small">© <a href="https://openai.com">OpenAI</a> + <a href="https://seiga.nicovideo.jp/seiga/im10788496?ref=pc_watch_description">坂本アヒル</a></span>
+<sub>© <a href="https://openai.com">OpenAI</a> + <a href="https://seiga.nicovideo.jp/seiga/im10788496?ref=pc_watch_description">坂本アヒル</a></sub>
 </div>
 
  * [chatgpt](https://chat.openai.com/)
