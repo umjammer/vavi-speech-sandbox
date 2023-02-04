@@ -13,12 +13,24 @@
 </div>
 
  * [chatgpt](https://chat.openai.com/)
- * [yakuwarigo modifier](https://github.com/umjammer/vavi-speech/tree/master/src/main/java/vavi/speech/modifier/ojosama)
- * [voicevox](https://voicevox.hiroshiba.jp/)
+ * [yakuwarigo modifier](https://github.com/umjammer/vavi-speech/tree/master/src/main/java/vavi/speech/modifier/yakuwarigo)
+ * [voicevox](https://voicevox.hiroshiba.jp/) ([library](https://github.com/umjammer/vavi-speech2))
+
+## Status
+
+ * official api ... [works](src/main/java/vavi/speech/sandbox/ChatGPT1.java)
+ * reverse engineering api ... [wip](src/main/java/vavi/speech/sandbox/ChatGPT2.java) (cloudflare api has been changed???)
 
 ## Install
 
  * [maven]((https://jitpack.io/#umjammer/vavi-speech-sandbox))
+ * vi local.properties
+ ```shell
+ $ cat local.properties
+ openai.key=XXXXXYYYYYZZZZZZ
+ chatgpt.model=text-davinci-003
+ user.agent=Mozilla/5.0 ...
+ ```
 
 ## Usage
 
