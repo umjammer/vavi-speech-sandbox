@@ -1,8 +1,10 @@
-package vavi.speech.sandbox;/*
+/*
  * Copyright (c) 2023 by Naohide Sano, All rights reserved.
  *
  * Programmed by Naohide Sano
  */
+
+package vavi.speech.sandbox;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

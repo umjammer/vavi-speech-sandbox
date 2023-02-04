@@ -69,7 +69,7 @@ public class ChatGPT2 {
         synthesizer.getSynthesizerProperties().setVolume(5);
 
         // yakuwarigo
-        YakuwarigoModifier.ConvertOption option = new YakuwarigoModifier.ConvertOption();
+        var option = new YakuwarigoModifier.ConvertOption();
         option.disableKutenToExclamation = true;
         option.name = "zundamon";
         option.disablePrefix = true;
