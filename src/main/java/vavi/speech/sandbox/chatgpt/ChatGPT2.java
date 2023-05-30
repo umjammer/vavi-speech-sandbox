@@ -18,6 +18,7 @@ import javax.speech.synthesis.Voice;
 import gg.acai.chatgpt.ChatGPT;
 import gg.acai.chatgpt.Conversation;
 import gg.acai.chatgpt.exception.ParsedExceptionEntry;
+import vavi.net.auth.cookie.chrome.mac.MacChromeCookie;
 import vavi.speech.modifier.yakuwarigo.YakuwarigoModifier;
 import vavi.util.Debug;
 import vavi.util.properties.annotation.Property;

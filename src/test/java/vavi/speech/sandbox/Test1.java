@@ -7,8 +7,6 @@
 package vavi.speech.sandbox;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
-import vavi.util.Debug;
 
 
 /**
@@ -20,12 +18,7 @@ import vavi.util.Debug;
 class Test1 {
 
     @Test
-    @DisabledIfEnvironmentVariable(named = "GITHUB_WORKFLOW", matches = ".*")
     void test1() throws Exception {
-        MacChromeCookie chromeCookie = new MacChromeCookie();
-        var cookie = chromeCookie.getCookie(".openai.com");
-cookie.forEach((k, v) -> System.err.println(k + "=" + v));
-Debug.println(cookie.get("cf_clearance"));
     }
 }
 
