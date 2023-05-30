@@ -7,6 +7,7 @@
 package vavi.speech.sandbox;
 
 import org.junit.jupiter.api.Test;
+import vavi.speech.sandbox.bingai.BingAIChat;
 
 
 /**
@@ -19,6 +20,7 @@ class Test1 {
 
     @Test
     void test1() throws Exception {
+        BingAIChat.main(new String[] {});
     }
 }
 
