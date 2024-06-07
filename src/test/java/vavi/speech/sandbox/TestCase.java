@@ -11,17 +11,15 @@ import vavi.speech.sandbox.bingai.BingAIChat;
 
 
 /**
- * Test1.
+ * TestCase.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 2023-01-23 nsano initial version <br>
  */
-class Test1 {
+class TestCase {
 
     @Test
     void test1() throws Exception {
         BingAIChat.main(new String[] {});
     }
 }
-
-/* */
