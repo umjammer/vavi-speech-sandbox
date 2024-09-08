@@ -8,6 +8,7 @@ package vavi.speech.sandbox;
 
 import org.junit.jupiter.api.Test;
 import vavi.speech.sandbox.bingai.BingAIChat;
+import vavi.speech.sandbox.ollama.Ollama;
 
 
 /**
@@ -21,5 +22,10 @@ class TestCase {
     @Test
     void test1() throws Exception {
         BingAIChat.main(new String[] {});
+    }
+
+    @Test
+    void test2() throws Exception {
+        Ollama.main(new String[] {});
     }
 }
