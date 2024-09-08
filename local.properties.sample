@@ -1,3 +1,6 @@
 openai.key=XXXXXYYYYYZZZZZZ
 chatgpt.model=text-davinci-003
 user.agent=Mozilla/5.0 ...
+ollama.mode=llama3.1
+voicevox.volume=10
+voicevox.speed=100
