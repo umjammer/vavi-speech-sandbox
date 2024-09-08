@@ -4,7 +4,6 @@
 
 package vavi.speech.sandbox.bingai;
 
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -561,8 +560,8 @@ Debug.println("WEBSOCKET: onError");
         /**
          * Reset the conversation
          */
-        /*async*/ void reset() throws IOException, InterruptedException {
-            /*await*/
+        /* async */ void reset() throws IOException, InterruptedException {
+            /* await */
             this.close();
             this.chat_hub = new _ChatHub(new _Conversation(this.cookies, null));
         }
@@ -571,11 +570,11 @@ Debug.println("WEBSOCKET: onError");
     /**
      * Multiline input function.
      */
-    /*async*/ String _get_input_async(
-            LineReader session /*= null*/
+    /* async */ String _get_input_async(
+            LineReader session /*= null */
     ) {
         // TODO multiline https://github.com/jline/jline3/issues/36#issuecomment-652522724
-        return /*await*/ session.readLine();
+        return /* await */ session.readLine();
     }
 
     static class MyParser extends DefaultParser {
@@ -595,7 +594,7 @@ Debug.println("WEBSOCKET: onError");
         }
     }
 
-    LineReader _create_session(Completer completer /* = null*/) {
+    LineReader _create_session(Completer completer /* = null */) {
 
         return LineReaderBuilder.builder()
                 .completer(completer)
@@ -605,7 +604,7 @@ Debug.println("WEBSOCKET: onError");
 //        Reader(/*key_bindings=*/kb);
     }
 
-    Completer _create_completer(List<String> commands, String pattern_str/* = "$"*/) {
+    static Completer _create_completer(List<String> commands, String pattern_str /* = "$" */) {
         return new Completers.RegexCompleter(pattern_str, s -> new StringsCompleter(commands));
     }
 
