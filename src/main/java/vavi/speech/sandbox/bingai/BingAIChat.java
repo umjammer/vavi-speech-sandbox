@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.CookieStore;
@@ -67,7 +69,8 @@ import org.klab.commons.cli.HelpOption;
 import org.klab.commons.cli.Option;
 import org.klab.commons.cli.Options;
 import vavi.net.auth.cookie.chrome.mac.MacChromeCookie;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -76,6 +79,8 @@ import vavi.util.Debug;
 @Options
 @HelpOption(argName = "help", option = "?", description = "print this help")
 public class BingAIChat {
+
+    private static final Logger logger = getLogger(BingAIChat.class.getName());
 
     static String DELIMITER = "0x1e";
 
@@ -366,21 +371,21 @@ public class BingAIChat {
         }
 
         @OnOpen public void onOpen(Session session) throws IOException {
-Debug.println("WEBSOCKET: onOpen: " + session.getId());
+logger.log(Level.DEBUG, "WEBSOCKET: onOpen: " + session.getId());
             onOpen.accept(session);
         }
 
         @OnMessage public void onNotifyMessage(String notification, Session session) throws IOException {
-Debug.println("WEBSOCKET: onMessage: " + notification);
+logger.log(Level.DEBUG, "WEBSOCKET: onMessage: " + notification);
         }
 
         @OnClose public void onClose(Session session) throws IOException {
-Debug.println("WEBSOCKET: onClose: " + session.getId());
+logger.log(Level.DEBUG, "WEBSOCKET: onClose: " + session.getId());
             session.close();
         }
 
         @OnError public void onError(Throwable t) {
-Debug.println("WEBSOCKET: onError");
+logger.log(Level.DEBUG, "WEBSOCKET: onError");
             t.printStackTrace();
         }
     }

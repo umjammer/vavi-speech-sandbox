@@ -8,6 +8,8 @@ package vavi.speech.sandbox.chatgpt;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Arrays;
 import javax.speech.Engine;
 import javax.speech.EngineManager;
@@ -20,9 +22,10 @@ import gg.acai.chatgpt.Conversation;
 import gg.acai.chatgpt.exception.ParsedExceptionEntry;
 import vavi.net.auth.cookie.chrome.mac.MacChromeCookie;
 import vavi.speech.modifier.yakuwarigo.YakuwarigoModifier;
-import vavi.util.Debug;
 import vavi.util.properties.annotation.Property;
 import vavi.util.properties.annotation.PropsEntity;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -33,6 +36,8 @@ import vavi.util.properties.annotation.PropsEntity;
  */
 @PropsEntity(url = "file:local.properties")
 public class ChatGPT2 {
+
+    private static final Logger logger = getLogger(ChatGPT2.class.getName());
 
     @Property(name = "openai.key")
     String apiKey;
@@ -80,9 +85,9 @@ public class ChatGPT2 {
         MacChromeCookie chromeCookie = new MacChromeCookie();
         var cookie = chromeCookie.getCookie(".openai.com");
         String cf_clearance = cookie.get("cf_clearance");
-Debug.println("cf_clearance: " + cf_clearance);
+logger.log(Level.DEBUG, "cf_clearance: " + cf_clearance);
         String sessionToken = cookie.get("__Secure-next-auth.session-token");
-Debug.println("sessionToken: " + sessionToken);
+logger.log(Level.DEBUG, "sessionToken: " + sessionToken);
 
         // chatgpt
         ChatGPT chatGpt = ChatGPT.newBuilder()

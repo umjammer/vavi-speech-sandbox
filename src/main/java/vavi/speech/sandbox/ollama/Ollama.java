@@ -6,8 +6,9 @@
 
 package vavi.speech.sandbox.ollama;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Arrays;
-import java.util.logging.Level;
 import javax.speech.Engine;
 import javax.speech.EngineManager;
 import javax.speech.synthesis.Synthesizer;
@@ -25,9 +26,10 @@ import org.jline.reader.LineReaderBuilder;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 import vavi.speech.voicevox.jsapi2.VoiceVoxSynthesizerMode;
-import vavi.util.Debug;
 import vavi.util.properties.annotation.Property;
 import vavi.util.properties.annotation.PropsEntity;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -40,6 +42,8 @@ import vavi.util.properties.annotation.PropsEntity;
  */
 @PropsEntity(url = "file:local.properties")
 public class Ollama {
+
+    private static final Logger logger = getLogger(Ollama.class.getName());
 
     /** Ollama web api */
     @Property(name = "ollama.url")
@@ -82,7 +86,7 @@ public class Ollama {
     }
 
     void exec() throws Exception {
-Debug.println("model: " + model + "volume: " + volume + ", speed: " + speed);
+logger.log(Level.DEBUG, "model: " + model + ", volume: " + volume + ", speed: " + speed);
         // voicevox
         Synthesizer synthesizer = (Synthesizer) EngineManager.createEngine(new VoiceVoxSynthesizerMode());
 
@@ -101,21 +105,21 @@ Debug.println("model: " + model + "volume: " + volume + ", speed: " + speed);
         OllamaChatRequestBuilder builder = OllamaChatRequestBuilder.getInstance(model);
         OllamaChatRequest requestModel = builder.withMessage(OllamaChatMessageRole.USER, "今から語尾に「なのだ」を使用して喋ってください").build();
         OllamaChatResult chatResult = ollamaAPI.chat(requestModel);
-Debug.println(Level.FINER, chatResult.getResponse());
+logger.log(Level.TRACE, chatResult.getResponse());
 
         try (Terminal terminal = TerminalBuilder.terminal()) {
             LineReader lineReader = LineReaderBuilder.builder().terminal(terminal).build();
             while (true) {
                 String prompt = lineReader.readLine("あなた    : ");
                 if (prompt.equals("quit")) break;
-//Debug.println("prompt: " + prompt);
+//logger.log(Level.DEBUG, "prompt: " + prompt);
                 requestModel = builder.withMessages(chatResult.getChatHistory()).withMessage(OllamaChatMessageRole.USER, prompt).build();
                 chatResult = ollamaAPI.chat(requestModel);
                 terminal.writer().println("ずんだもん: " + chatResult.getResponse());
                 synthesizer.speak(chatResult.getResponse(), null);
             }
         } catch (EndOfFileException e) {
-Debug.println("bye...");
+logger.log(Level.DEBUG, "bye...");
         }
 
         synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
