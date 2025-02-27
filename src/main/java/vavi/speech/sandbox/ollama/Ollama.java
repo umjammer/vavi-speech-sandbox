@@ -52,6 +52,15 @@ public class Ollama {
     @Property(name = "ollama.model")
     String model = "llama3.1";
 
+    @Property(name = "ollama.initial")
+    String initial = "今から語尾に「なのだ」を使用して喋ってください";
+
+    @Property(name = "ollama.timeout")
+    int timeout = 30;
+
+    @Property(name = "voicevox.voice")
+    String voice;
+
     @Property(name = "voicevox.speed")
     int speed = 100;
 
@@ -67,6 +76,7 @@ public class Ollama {
 
             ollamaAPI = new OllamaAPI(url);
 
+            ollamaAPI.setRequestTimeoutSeconds(timeout);
             ollamaAPI.setVerbose(true);
 
             if (!ollamaAPI.ping()) {
@@ -95,15 +105,14 @@ logger.log(Level.DEBUG, "model: " + model + ", volume: " + volume + ", speed: " 
         synthesizer.resume();
         synthesizer.waitEngineState(Synthesizer.RESUMED);
 
-        String voiceName = "ずんだもん(ノーマル)";
-        Voice voice = Arrays.stream(((SynthesizerMode) synthesizer.getEngineMode()).getVoices()).filter(v -> v.getName().equals(voiceName)).findFirst().get();
+        Voice voice = Arrays.stream(((SynthesizerMode) synthesizer.getEngineMode()).getVoices()).filter(v -> v.getName().equals(this.voice)).findFirst().get();
         synthesizer.getSynthesizerProperties().setVoice(new Voice(voice.getSpeechLocale(), voice.getName(), voice.getGender(), Voice.AGE_DONT_CARE, Voice.VARIANT_DONT_CARE));
         synthesizer.getSynthesizerProperties().setVolume(volume);
         synthesizer.getSynthesizerProperties().setSpeakingRate(speed);
 
         // ollma
         OllamaChatRequestBuilder builder = OllamaChatRequestBuilder.getInstance(model);
-        OllamaChatRequest requestModel = builder.withMessage(OllamaChatMessageRole.USER, "今から語尾に「なのだ」を使用して喋ってください").build();
+        OllamaChatRequest requestModel = builder.withMessage(OllamaChatMessageRole.USER, initial).build();
         OllamaChatResult chatResult = ollamaAPI.chat(requestModel);
 logger.log(Level.TRACE, chatResult.getResponse());
 
@@ -115,8 +124,13 @@ logger.log(Level.TRACE, chatResult.getResponse());
 //logger.log(Level.DEBUG, "prompt: " + prompt);
                 requestModel = builder.withMessages(chatResult.getChatHistory()).withMessage(OllamaChatMessageRole.USER, prompt).build();
                 chatResult = ollamaAPI.chat(requestModel);
-                terminal.writer().println("ずんだもん: " + chatResult.getResponse());
-                synthesizer.speak(chatResult.getResponse(), null);
+                String result = chatResult.getResponse().replaceFirst("<think>.*</think>", "");
+                terminal.writer().println("ずんだもん: " + result);
+                Arrays.stream(result.split("\n")).forEach(s -> {
+                    s = s.trim();
+                    if (!s.isEmpty())
+                        synthesizer.speak(s, null);
+                });
             }
         } catch (EndOfFileException e) {
 logger.log(Level.DEBUG, "bye...");
