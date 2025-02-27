@@ -5,7 +5,7 @@
 
   <groupId>vavi</groupId>
   <artifactId>vavi-speech-sandbox</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 
   <build>
     <plugins>
@@ -69,7 +69,7 @@
       <version>1.1.14</version>
     </dependency>
 
-    <dependency>
+    <dependency> <!-- cahtgpt -->
       <groupId>io.github.barqawiz</groupId>
       <artifactId>intellijava.core</artifactId>
       <version>0.8.2</version>
@@ -89,7 +89,7 @@
     <dependency>
       <groupId>com.github.umjammer</groupId> <!-- vavi / com.github.umjammer -->
       <artifactId>vavi-speech2</artifactId>
-      <version>0.0.18</version>
+      <version>0.0.20</version>
       <exclusions>
         <exclusion>
           <groupId>com.github.umjammer</groupId>
@@ -98,10 +98,6 @@
         <exclusion>
           <groupId>com.github.umjammer.FreeTTS</groupId>
           <artifactId>freetts-jsapi10</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.github.umjammer</groupId>
-          <artifactId>klab-commons-cli</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -113,15 +109,15 @@
     </dependency>
 
     <dependency>
-      <groupId>com.github.umjammer.vavi-net-auth</groupId>
+      <groupId>com.github.umjammer.vavi-net-auth</groupId> <!-- vavi / com.github.umjammer.vavi-net-auth -->
       <artifactId>vavi-net-auth-common</artifactId>
-      <version>0.1.11</version>
+      <version>0.1.13</version>
     </dependency>
 
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
       <artifactId>javax-websocket-client-impl</artifactId>
-      <version>9.4.54.v20240208</version>
+      <version>9.4.57.v20241219</version>
     </dependency>
 
     <dependency>
@@ -142,7 +138,7 @@
       <version>3.26.2</version>
     </dependency>
 
-    <dependency>
+    <dependency> <!-- ollama -->
       <groupId>io.github.ollama4j</groupId>
       <artifactId>ollama4j</artifactId>
       <version>1.0.84</version>

@@ -1,6 +1,12 @@
 openai.key=XXXXXYYYYYZZZZZZ
 chatgpt.model=text-davinci-003
+
 user.agent=Mozilla/5.0 ...
-ollama.mode=llama3.1
+
+ollama.model=llama3.1
+ollama.timeout=3000
+ollama.initial=今から語尾に「なのだ」を使用して喋ってください。
+
+voicevox.voice=ずんだもん(ノーマル)
 voicevox.volume=10
 voicevox.speed=100

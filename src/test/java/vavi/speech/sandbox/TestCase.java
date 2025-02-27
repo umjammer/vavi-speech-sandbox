@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import vavi.speech.sandbox.bingai.BingAIChat;
 import vavi.speech.sandbox.ollama.Ollama;
 
@@ -30,6 +31,7 @@ class TestCase {
     }
 
     @Test
+    @EnabledIfSystemProperty(named = "vavi.test", matches = "ide")
     void test1() throws Exception {
         BingAIChat.main(new String[] {});
     }

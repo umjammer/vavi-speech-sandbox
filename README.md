@@ -5,30 +5,51 @@
 
 # vavi-speech-sandbox
 
-<img src="https://user-images.githubusercontent.com/493908/216398725-5ded666c-567d-40a4-a8f1-83acfc8d60b8.png" width="120" alt="OpenAI" /><sub><a href="https://openai.com"> © OpenAI</a></sub>
-<span style="font-size:4em;"> 🤝🏻 </span>
+<img alt="ollama" src="https://github.com/user-attachments/assets/b2870d32-1db4-4130-9eef-9fca6023ca40" width="90" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="font-size:4em;"> ✖ </span>
 <img src="https://user-images.githubusercontent.com/493908/216399074-bbdd72f8-333b-4125-9e4d-7e44aeeb248e.png" width="120" alt="ずんだもん" /><sub><a href="https://seiga.nicovideo.jp/seiga/im10788496?ref=pc_watch_description"> © 坂本アヒル</a></sub>
 
- * [ChatGPT](https://chat.openai.com/)
- * [yakuwarigo modifier](https://github.com/umjammer/vavi-speech/tree/master/src/main/java/vavi/speech/modifier/yakuwarigo)
- * [VoiceVox](https://voicevox.hiroshiba.jp/) ([library](https://github.com/umjammer/vavi-speech2))
  * [Ollama](https://github.com/ollama4j/ollama4j)
+ * [VoiceVox](https://voicevox.hiroshiba.jp/) ([library](https://github.com/umjammer/vavi-speech2))
 
 ### Status
 
- * official api ... [works](src/main/java/vavi/speech/sandbox/ChatGPT1.java)
- * reverse engineering api ... [wip](src/main/java/vavi/speech/sandbox/ChatGPT2.java) (cloudflare api has been changed???)
+ * ollama ... works
+ * obsoleted
+   * chatgpt: official api ... [works](src/main/java/vavi/speech/sandbox/ChatGPT1.java)
+   * reverse engineering api ... [wip](src/main/java/vavi/speech/sandbox/ChatGPT2.java) (cloudflare api has been changed???)
 
 ## Install
 
+### maven
+
  * [maven]((https://jitpack.io/#umjammer/vavi-speech-sandbox))
- * vi local.properties
- ```shell
- $ cat local.properties
- openai.key=XXXXXYYYYYZZZZZZ
- chatgpt.model=text-davinci-003
- user.agent=Mozilla/5.0 ...
- ```
+
+### local.properties
+
+#### voicebox
+
+```shell
+voicevox.voice=ずんだもん(ノーマル)
+voicevox.volume=10
+voicevox.speed=115
+```
+
+#### ollama
+
+```shell
+ollama.model=llama3.1:latest
+ollama.timeout=3000
+ollama.initial=今から語尾に「なのだ」を使用して喋ってください。
+```
+
+#### chatgpt
+
+```shell
+openai.key=XXXXXYYYYYZZZZZZ
+chatgpt.model=text-davinci-003
+user.agent=Mozilla/5.0 ...
+```
 
 ## Usage
 
@@ -43,7 +64,7 @@
 
 ### ollama
 ```shell
-$ java -Djava.util.logging.config.file=src/test/resources/logging.properties -cp target/vavi-speech-sandbox-0.0.1-SNAPSHOT.jar:$(jpomclasspath) vavi.speech.sandbox.ollama.Ollama
+$ java -Djava.util.logging.config.file=src/test/resources/logging.properties -cp target/vavi-speech-sandbox-0.0.2-SNAPSHOT.jar:$(jpomclasspath) vavi.speech.sandbox.ollama.Ollama
 ```
 [jpomclasspath](https://gist.github.com/umjammer/0a56f0a3a6e7f7ebec641661fd6bb36d) ... a shell script creates the classpath includes all dependency jars in the pom.xml
 
@@ -51,7 +72,7 @@ $ java -Djava.util.logging.config.file=src/test/resources/logging.properties -cp
 
  * https://github.com/mlkui/chrome-cookie-password-decryption
  * https://github.com/acheong08/EdgeGPT
- * ChatGPT
+ * [ChatGPT](https://chat.openai.com/)
    * https://github.com/Barqawiz/IntelliJava ... official api
    * https://github.com/AcaiSoftware/chatgpt-java
    * https://github.com/PlexPt/chatgpt-java ...
@@ -61,10 +82,10 @@ $ java -Djava.util.logging.config.file=src/test/resources/logging.properties -cp
    * https://github.com/jline/jline3
  * Bard
    * https://github.com/LarryDpk/Google-Bard
- * Ollama
-   * https://github.com/ollama/ollama
+ * [Ollama](https://github.com/ollama/ollama)
    * https://qiita.com/s3kzk/items/3cebb8d306fb46cabe9f (japanese model)
    * https://github.com/ollama4j/ollama4j
+ * [yakuwarigo modifier](https://github.com/umjammer/vavi-speech/tree/master/src/main/java/vavi/speech/modifier/yakuwarigo)
 
 ## TODO
 
